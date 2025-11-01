@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Рандомайзер — ЛР6</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="container">
+    <header class="hero">
+      <h1>Рандомайзер</h1>
+      <p class="subtitle">Набор инструментов для случайного выбора — числа, имена, цвета, кости и не только.</p>
+      <div class="controls-row">
+        <button id="tab-numbers" class="tab-btn active">Числа</button>
+        <button id="tab-list" class="tab-btn">Список</button>
+        <button id="tab-color" class="tab-btn">Цвет</button>
+        <button id="tab-dice" class="tab-btn">Кости</button>
+        <button id="tab-names" class="tab-btn">Выбор имён</button>
+      </div>
+    </header>
+
+    <section id="numbers" class="panel">
+      <h2>Рандомайзер чисел</h2>
+      <div class="row">
+        <label>От <input type="number" id="num-min" value="1"></label>
+        <label>До <input type="number" id="num-max" value="100"></label>
+        <label>Количество результатов <input type="number" id="num-count" value="1" min="1" max="50"></label>
+        <label><input type="checkbox" id="num-unique" checked> Без повторов</label>
+      </div>
+      <div class="row actions">
+        <button id="gen-number" class="primary">Сгенерировать</button>
+        <button id="copy-number">Копировать</button>
+      </div>
+      <div id="number-result" class="result" aria-live="polite"></div>
+    </section>
+
+    <section id="list" class="panel hidden">
+      <h2>Рандомайзер списка</h2>
+      <textarea id="list-items" placeholder="Каждый элемент с новой строки...">Яблоко
+Банан
+Апельсин
+Груша
+Манго</textarea>
+      <div class="row actions">
+        <button id="pick-list" class="primary">Выбрать случайный</button>
+        <button id="shuffle-list">Перемешать</button>
+        <button id="save-list">Сохранить в память</button>
+      </div>
+      <div id="list-result" class="result" aria-live="polite"></div>
+    </section>
+
+    <section id="color" class="panel hidden">
+      <h2>Генератор цветов</h2>
+      <div class="row">
+        <label>Формат:
+          <select id="color-format">
+            <option value="hex">HEX</option>
+            <option value="rgb">RGB</option>
+            <option value="hsl">HSL</option>
+          </select>
+        </label>
+        <label>Количество <input type="number" id="color-count" value="1" min="1" max="20"></label>
+      </div>
+      <div class="row actions">
+        <button id="gen-color" class="primary">Сгенерировать</button>
+        <button id="copy-color">Копировать все</button>
+      </div>
+      <div id="color-result" class="palette" aria-live="polite"></div>
+    </section>
+
+    <section id="dice" class="panel hidden">
+      <h2>Бросок кости</h2>
+      <div class="row">
+        <label>Кости:
+          <select id="dice-type">
+            <option value="6">d6</option>
+            <option value="4">d4</option>
+            <option value="8">d8</option>
+            <option value="10">d10</option>
+            <option value="12">d12</option>
+            <option value="20">d20</option>
+          </select>
+        </label>
+        <label>Кол-во бросков <input type="number" id="dice-count" value="1" min="1" max="10"></label>
+      </div>
+      <div class="row actions">
+        <button id="roll-dice" class="primary">Бросить</button>
+        <button id="advantage" title="Advantage: возьмёт максимум для d20">Advantage</button>
+        <button id="disadvantage" title="Disadvantage: возьмёт минимум для d20">Disadvantage</button>
+      </div>
+      <div id="dice-result" class="result" aria-live="polite"></div>
+    </section>
+
+    <section id="names" class="panel hidden">
+      <h2>Выбор имён (с исключением)</h2>
+      <textarea id="names-list" placeholder="Каждое имя с новой строки...">Андрей
+Мария
+Иван
+Ольга
+Пётр</textarea>
+      <div class="row">
+        <label><input type="checkbox" id="elim-mode"> Исключать выбранные (пока не сбросить)</label>
+      </div>
+      <div class="row actions">
+        <button id="pick-name" class="primary">Выбрать</button>
+        <button id="reset-names">Сбросить исключения</button>
+      </div>
+      <div id="name-result" class="result" aria-live="polite"></div>
+    </section>
+
+    <footer class="footer">
+      <div>ЛР6 — Рандомайзер · Сгенерировано автоматически</div>
+      <div class="footer-actions">
+        <button id="download-zip">Скачать файлы (.zip)</button>
+        <button id="open-readme">Readme</button>
+      </div>
+    </footer>
+  </main>
+
+  <dialog id="readme-dialog">
+    <article>
+      <h3>README — как запустить</h3>
+      <p>Откройте <code>index.html</code> в любом современном браузере. Все файлы находятся в одном каталоге.</p>
+      <p>Функции: числа, список, цвета, кости, выбор имён. История результатов сохраняется в LocalStorage.</p>
+      <button id="close-readme">Закрыть</button>
+    </article>
+  </dialog>
+
+  <script src="script.js" defer></script>
+</body>
+</html>
